@@ -99,7 +99,7 @@ background:#ddd;
 
 <div class="container">
 
-<form>
+<form id="laporanForm">
 
 <label>Nama Pelapor</label>
 
@@ -162,6 +162,44 @@ Kirim Laporan
 © 2026 DKM RW 06
 
 </footer>
+<script>
 
+document.getElementById("laporanForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+fetch("URL_APPS_SCRIPT_DISINI",{
+
+method:"POST",
+
+body:JSON.stringify({
+
+nama:document.querySelectorAll("input")[0].value,
+
+wa:document.querySelectorAll("input")[1].value,
+
+jenis:document.querySelector("select").value,
+
+judul:document.querySelectorAll("input")[2].value,
+
+isi:document.querySelector("textarea").value
+
+})
+
+})
+
+.then(r=>r.text())
+
+.then(data=>{
+
+alert("Laporan berhasil dikirim.");
+
+document.getElementById("laporanForm").reset();
+
+});
+
+});
+
+</script>
 </body>
 </html>
